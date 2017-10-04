@@ -28,7 +28,7 @@ public class Principal extends javax.swing.JFrame {
         juego = new Ahorcado();
 
         try {
-            String palabra = juego.conectarse();
+            String palabra = juego.recuperarPalabra();
             juego = new Ahorcado(Palabra_oculta, palabra, ahorcado, errores, largoPalabra);
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);

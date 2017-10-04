@@ -78,7 +78,7 @@ public class Ahorcado {
 
     }
 
-    public String conectarse() throws IOException {
+    public String recuperarPalabra() throws IOException {
         String IP = "http://localhost:8080/AhorcadoHTTP/juego";
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet(IP);
