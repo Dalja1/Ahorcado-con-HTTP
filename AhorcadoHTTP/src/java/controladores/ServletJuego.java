@@ -5,6 +5,7 @@
  */
 package controladores;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
@@ -37,14 +38,14 @@ public class ServletJuego extends HttpServlet {
                LogicaJuego palabra = new LogicaJuego();
                String word = palabra.Random();
                //System.out.println(word);
-               //String json = new Gson().toJson(word);
-               //System.out.println(json);
-               //response.setContentType("aplication/json");
+               String json = new Gson().toJson(word);
+               System.out.println(json);
+               response.setContentType("aplication/json");
                response.setCharacterEncoding("UTF-8");
                Writer writer = null;
                try{
                    writer = response.getWriter();
-                   writer.write(word);
+                   writer.write(json);
                }finally{
                    try{
                        writer.close();

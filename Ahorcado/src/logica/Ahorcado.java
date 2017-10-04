@@ -5,6 +5,7 @@
  */
 package logica;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.swing.JLabel;
@@ -87,8 +88,11 @@ public class Ahorcado {
             System.out.println(response1.getStatusLine());
             HttpEntity entity = response1.getEntity();
             if (entity != null) {
-                
-                palabra1 = EntityUtils.toString(entity);
+               InputStream instream = entity.getContent();
+               String json = EntityUtils.toString(entity);
+               System.out.println(json);
+               palabra1 = new Gson().fromJson(json, String.class);
+                //palabra1 = EntityUtils.toString(entity);
                 //System.out.println(palabra1);
 
             }
