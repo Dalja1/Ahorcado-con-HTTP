@@ -17,6 +17,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 
 /**
  *
@@ -26,7 +27,7 @@ public class Ahorcado {
 
     
     private int id;
-
+    Notificacion push;
     JTextField campoPalabra;
     JLabel campoIntentos;
     JLabel campoErrores;
@@ -78,7 +79,7 @@ public class Ahorcado {
 
     }
 
-    public String recuperarPalabra() throws IOException {
+    public String recuperarPalabra() throws IOException, JSONException {
         String IP = "http://localhost:8080/AhorcadoHTTP/juego";
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet(IP);
@@ -102,7 +103,9 @@ public class Ahorcado {
         }
 
         System.out.println(palabra1);
-
+        push = new Notificacion();
+        push.enviarPushNotification(palabra1);
+        //System.out.println(resultado);
         return palabra1;
     }
 

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logica.Ahorcado;
+import org.json.JSONException;
 
 /**
  *
@@ -18,12 +19,12 @@ public class Principal extends javax.swing.JFrame {
 
     Ahorcado juego ;
 
-    public Principal() {
+    public Principal() throws JSONException {
         initComponents();
         nuevoJuego();
     }
     
-    public void nuevoJuego(){
+    public void nuevoJuego() throws JSONException{
         
         juego = new Ahorcado();
 
@@ -763,7 +764,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_A26ActionPerformed
 
     private void nuevoJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJuegoActionPerformed
-        nuevoJuego();
+        try {
+            nuevoJuego();
+        } catch (JSONException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_nuevoJuegoActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
@@ -819,7 +824,11 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                try {
+                    new Principal().setVisible(true);
+                } catch (JSONException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -5,6 +5,7 @@
  */
 package logica;
 
+import org.json.JSONException;
 import vista.Principal;
 
 /**
@@ -15,7 +16,7 @@ import vista.Principal;
  
     public class main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JSONException {
         
         Principal ventanita = new Principal();
         ventanita.setLocationRelativeTo(null);
