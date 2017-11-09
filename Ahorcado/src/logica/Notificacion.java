@@ -22,15 +22,15 @@ public class Notificacion {
     
 public final static String AUTH_KEY_FCM = "AIzaSyCDC3_WjHficpITUcxYknJmbNvQUjqPkPw";
 public final static String API_URL_FCM = "https://fcm.googleapis.com/fcm/send";
-public final static String TOKEN = "fkcLSP9tDBo:APA91bGy-Qnh9Asl3aXTKLlbLC9NwLDNReMfbYd7WofT6zCq87bPs-MCSwAHsInLYjEjlo5ZzGX7c1vqf0g7yUPKu27lswdCIsnsJpKmyfwtn7w3cSgDDxyp1xBKioNiMMYydhIyj2cB";
-
+public final static String TOPIC = "news";
+        
     public void enviarPushNotification(String mensaje)
         throws IOException, JSONException {
     //String result = "";
         
    String authKey = AUTH_KEY_FCM; // You FCM AUTH key
    String FMCurl = API_URL_FCM; 
-   String Token = TOKEN;
+   String Topic = "/topics/" + TOPIC; //Topic al que esta suscrito el admin
     URL url = new URL(FMCurl);
     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -42,14 +42,14 @@ public final static String TOKEN = "fkcLSP9tDBo:APA91bGy-Qnh9Asl3aXTKLlbLC9NwLDN
     conn.setRequestProperty("Authorization", "key=" +authKey);
     conn.setRequestProperty("Content-Type", "application/json");
 
-    JSONObject json = new JSONObject();
+    JSONObject json = new JSONObject(); // Se crea el json a enviar
 
-    json.put("to", Token.trim() );
+    json.put("to", Topic.trim() );
     JSONObject info = new JSONObject();
     info.put("title", "Nuevo Juego"); // Notification title
     info.put("body", "Se ha iniciado un nuevo juego con la palabra: "+mensaje); // Notification
-                                                            // body
-    json.put("notification", info);
+    info.put("icon", "ic_videogame_asset_white_48dp");    //Icono que se mostrará                                                   // body
+    json.put("notification", info); //Se agrega el json
     
     OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
     wr.write(json.toString());
